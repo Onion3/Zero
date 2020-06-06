@@ -1,0 +1,23 @@
+{
+    "name": "Zero",
+    "version": "1.0.0",
+    "description": "Extension for Onion3 Matrixbit Zero V1.0.0",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "neopixel":  "github:Onion3/Zero_Neopixel",
+        "Zero_IR":  "github:Onion3/Zero_IR"
+		
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "_locales/zh-cn/Zero-strings.json",
+        "_locales/zh-tw/Zero-strings.json"
+
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
+}
