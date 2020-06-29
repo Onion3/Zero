@@ -177,7 +177,7 @@ namespace Zero {
      * @param index
      */   
 
-    //% blockId=Tinybit_RGB_Car_Program block="RGB_Car_Program"
+    //% blockId=Zero_RGB_Car_Program block="RGB_Car_Program"
     //% weight=99
     //% blockGap=10
     //% color="#006400"
@@ -190,7 +190,7 @@ namespace Zero {
         return yahStrip;  
     }  
 
-    /*//% blockId=Tinybit_RGB_Car_Big block="RGB_Car_Big|value %value"
+    /*//% blockId=Zero_RGB_Car_Big block="RGB_Car_Big|value %value"
     //% weight=98
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -231,7 +231,7 @@ namespace Zero {
             }
         }
     }
-    //% blockId=Tinybit_RGB_Car_Big2 block="RGB_Car_Big2|value1 %value1|value2 %value2|value3 %value3"
+    //% blockId=Zero_RGB_Car_Big2 block="RGB_Car_Big2|value1 %value1|value2 %value2|value3 %value3"
     //% weight=97
     //% blockGap=10
     //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
@@ -242,7 +242,7 @@ namespace Zero {
 
     }*/
 	
-    //% blockId=Tinybit_Music_Car block="Music_Car|%index"
+    //% blockId=Zero_Music_Car block="Music_Car|%index"
     //% weight=95
     //% blockGap=10
     //% color="#006400"
@@ -274,7 +274,7 @@ namespace Zero {
     
     
     
-    //% blockId=Tinybit_CarCtrl block="CarCtrl|%index"
+    //% blockId=Zero_CarCtrl block="CarCtrl|%index"
     //% weight=93
     //% blockGap=10
     //% color="#006400"
@@ -291,7 +291,7 @@ namespace Zero {
         }
     }
     
-    //% blockId=Tinybit_CarCtrlSpeed block="CarCtrlSpeed|%index|speed %speed"
+    //% blockId=Zero_CarCtrlSpeed block="CarCtrlSpeed|%index|speed %speed"
     //% weight=92
     //% blockGap=10
     //% speed.min=0 speed.max=255
@@ -309,7 +309,7 @@ namespace Zero {
         }
     }
     
-    //% blockId=Tinybit_CarCtrlSpeed2 block="CarCtrlSpeed2|%index|speed1 %speed1|speed2 %speed2"
+    //% blockId=Zero_CarCtrlSpeed2 block="CarCtrlSpeed2|%index|speed1 %speed1|speed2 %speed2"
     //% weight=91
     //% blockGap=10
     //% speed1.min=0 speed1.max=255 speed2.min=0 speed2.max=255
@@ -327,7 +327,7 @@ namespace Zero {
         }
     }    
     
-    //% blockId=Tinybit_Line_Sensor block="Line Sensor |direct %direct"
+    //% blockId=Zero_Line_Sensor block="Line Sensor |direct %direct"
     //% weight=89
     //% blockGap=10
     //% color="#006400"
@@ -358,7 +358,7 @@ namespace Zero {
     }        
    
     
-    /*//% blockId=Tinybit_Line_Sensor block="Line_Sensor|direct %direct|value %value"
+    /*//% blockId=Zero_Line_Sensor block="Line_Sensor|direct %direct|value %value"
     //% weight=88
     //% blockGap=10
     //% color="#006400"
@@ -406,7 +406,7 @@ namespace Zero {
 
     }*/
 
-    //% blockId=Tinybit_Voice_Sensor block="Voice Sensor return"
+    //% blockId=Zero_Voice_Sensor block="Voice Sensor return"
     //% weight=87
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
@@ -419,7 +419,7 @@ namespace Zero {
 
     }
         
-    //% blockId=Tinybit_Ultrasonic_Car block="ultrasonic return distance(cm)"
+    //% blockId=Zero_Ultrasonic_Car block="ultrasonic return distance(cm)"
     //% color="#006400"
     //% weight=86
     //% blockGap=10
