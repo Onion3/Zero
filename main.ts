@@ -334,7 +334,8 @@ namespace Zero {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
     export function Line_Sensor(direct: enPos): number {
 
-        let temp = pins.i2cReadNumber(1, NumberFormat.Int8LE, false);
+        let temp  = 0;
+		temp = pins.i2cReadNumber(1, NumberFormat.Int8LE, false);
 		switch (direct) {
 				case enPos.AllState: {
 					return temp;
