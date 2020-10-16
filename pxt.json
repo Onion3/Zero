@@ -5,7 +5,8 @@
     "license": "MIT",
     "dependencies": {
         "core": "*",
- 
+        "neopixel": "github:Onion3/Zero_Neopixel",
+        "Zero_IR":  "github:Onion3/Zero_IR"
 		
     },
     "files": [
