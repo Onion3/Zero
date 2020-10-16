@@ -327,7 +327,7 @@ namespace Zero {
         }
     }    
     
-    //% blockId=Zero_Line_Sensor block="Line Sensor |direct %direct"
+    //% blockId=Zero_Line_Sensor block="Line_Sensor |direct %direct"
     //% weight=89
     //% blockGap=10
     //% color="#006400"
