@@ -44,7 +44,6 @@ namespace Zero {
         ringtone,
         funk,
         blues,
-
         birthday,
         wedding,
         funereal,
@@ -309,53 +308,6 @@ namespace Zero {
     }        
    
     
-    /*//% blockId=Zero_Line_Sensor block="Line_Sensor|direct %direct|value %value"
-    //% weight=88
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Line_Sensor(direct: enPos, value: enLineState): boolean {
-
-         let temp: boolean = false;
-		 let temp1 = pins.i2cReadNumber(1, NumberFormat.Int8LE, false);
-		 
-		 
-		 
-        //pins.setPull(DigitalPin.P13, PinPullMode.PullNone);
-        //pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
-        switch (direct) {
-            case enPos.LeftState: {
-                if ((temp1 &0x01) == value) {              
-                    temp = true;                  
-                }
-                else {                  
-                     temp = false;
-                }
-                break;
-            }
-            case enPos.MiddleState: {
-                if ((temp1 &0x02) == value) {              
-                    temp = true;                  
-                }
-                else {                  
-                     temp = false;
-                }
-                break;
-            }
-			
-            case enPos.RightState: {
-                if ((temp1 &0x04) == value) {              
-                    temp = true;                  
-                }
-                else {
-                    temp = false;
-                }
-                break;
-            }
-        }
-        return temp;
-
-    }*/
 
     //% blockId=Zero_Voice_Sensor block="Voice Sensor return"
     //% weight=87
