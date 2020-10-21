@@ -1,5 +1,4 @@
 {
-
   "Zero.Ultrasonic_Car|block": "超聲波返回（cm）",
   "Zero.RGB_Car_Program|block": "車身七彩流水燈",
   "Zero.RGB_Car_Big|block": "小車RGB探照燈|選擇車燈顏色 %value",
@@ -18,7 +17,6 @@
   "Zero.enColor.Cyan|block": "青色",
   "Zero.enColor.Pinkish|block": "品紅",
   "Zero.enColor.Yellow|block": "黃色",
-  
   "Zero.enPos.AllState|block": "全部",  
   "Zero.enPos.LeftState|block": "左邊",
   "Zero.enPos.MiddleState|block": "中間",  
@@ -29,7 +27,6 @@
   "Zero.enTouchState.NoGet|block": "未感受到",
   "Zero.enAvoidState.OBSTACLE|block": "有障礙物",
   "Zero.enAvoidState.NOOBSTACLE|block": "無障礙物",
-  
   "Zero.CarState.Car_Run|block": "前進",
   "Zero.CarState.Car_Back|block": "後退",
   "Zero.CarState.Car_Left|block": "左轉",

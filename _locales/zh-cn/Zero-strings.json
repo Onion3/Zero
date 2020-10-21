@@ -17,8 +17,7 @@
   "Zero.enColor.White|block": "白色",
   "Zero.enColor.Cyan|block": "青色",
   "Zero.enColor.Pinkish|block": "品红",
-  "Zero.enColor.Yellow|block": "黄色",
-  
+  "Zero.enColor.Yellow|block": "黄色", 
   "Zero.enPos.AllState|block": "全部",
   "Zero.enPos.LeftState|block": "左边",
   "Zero.enPos.MiddleState|block": "中间",  
@@ -29,7 +28,6 @@
   "Zero.enTouchState.NoGet|block": "未感受到",
   "Zero.enAvoidState.OBSTACLE|block": "有障碍物",
   "Zero.enAvoidState.NOOBSTACLE|block": "无障碍物",
-  
   "Zero.CarState.Car_Run|block": "前进",
   "Zero.CarState.Car_Back|block": "后退",
   "Zero.CarState.Car_Left|block": "左转",

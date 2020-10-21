@@ -390,6 +390,7 @@ namespace Zero {
 	let length = (list[1] + list[2] + list[3])/3;
 	return  Math.floor(length);
     }
+	/*
 	function pushBit(bit: number): number {
         irState.bitsReceived += 1;
         if (irState.bitsReceived <= 8) {
@@ -472,7 +473,7 @@ namespace Zero {
     //% pin.fieldOptions.columns=4
     //% pin.fieldOptions.tooltips="false"
     //% weight=15
-    export function connectIrReceiver(pin: DigitalPin, protocol: IrProtocol): void {
+   /* export function connectIrReceiver(pin: DigitalPin, protocol: IrProtocol): void {
         if (irState) {
             return;
         }
@@ -554,7 +555,7 @@ namespace Zero {
     //% button.fieldOptions.columns=3
     //% button.fieldOptions.tooltips="false"
     //% weight=13
-    export function onIrButton(button: IrButton, action: IrButtonAction, handler: () => void) {
+   /* export function onIrButton(button: IrButton, action: IrButtonAction, handler: () => void) {
         control.onEvent(
             action === IrButtonAction.Pressed
                 ? MICROBIT_MAKERBIT_IR_BUTTON_PRESSED_ID
@@ -574,7 +575,7 @@ namespace Zero {
     //% blockId=makerbit_infrared_ir_button_pressed
     //% block="IR button"
     //% weight=10
-    export function irButton(): number {
+    /*export function irButton(): number {
         if (!irState) {
             return IrButton.Any;
         }
@@ -588,7 +589,7 @@ namespace Zero {
     //% blockId=makerbit_infrared_was_any_button_pressed
     //% block="any IR button was pressed"
     //% weight=7
-    export function wasAnyIrButtonPressed(): boolean {
+   /* export function wasAnyIrButtonPressed(): boolean {
         if (!irState) {
             return false;
         }
@@ -611,8 +612,8 @@ namespace Zero {
     //% button.fieldOptions.tooltips="false"
     //% block="IR button code %button"
     //% weight=5
-    export function irButtonCode(button: IrButton): number {
+    /*export function irButtonCode(button: IrButton): number {
         return button as number;
-    }
+    }*/
 }
 
