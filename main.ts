@@ -63,6 +63,12 @@ namespace Zero {
         //% block="NEC"
         NEC = 1,
     }
+    export enum IrButtonAction {
+        //% block="pressed"
+        Pressed = 0,
+        //% block="released"
+        Released = 1,
+    }
 
 	  export enum IrButton {
         //IR HANDLE
