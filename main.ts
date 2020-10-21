@@ -1,9 +1,15 @@
-﻿/*
-Copyright (C): 2010-2019, Shenzhen Onion3 Tech
-modified from Sean
-load dependency
-"Zero": "file:../pxt-Zero"
+﻿/** 
+ * @file pxt-Zero/main.ts
+ * @brief Onion3's Zero makecode library.
+ * @n This is a MakeCode graphical programming education robot.
+ * 
+ * @copyright    Onion3,2020
+ * @copyright    MIT Lesser General Public License
+ * 
+ * @author [email](Onion3@aliyun.com)
+ * @date  2020-07-22
 */
+
 
 //% color="#006400" weight=20 icon="\uf1b9"
 namespace Zero {
