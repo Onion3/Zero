@@ -36,5 +36,12 @@
   "Zero.CarState.Car_Right|block": "右转",
   "Zero.CarState.Car_Stop|block": "停止",
   "Zero.CarState.Car_SpinLeft|block": "原地左旋",
-  "Zero.CarState.Car_SpinRight|block": "原地右旋"
+  "Zero.CarState.Car_SpinRight|block": "原地右旋",
+      "Zero.connectIrReceiver|block": "连接红外接收到 %pin| 编码格式：%protocol",
+    "Zero.onIrButton|block": "当红外按键 %button| %action",
+    "Zero.IrButtonAction.pressed|block":"按下",
+    "Zero.IrButtonAction.released|block":"释放",
+    "Zero.irButton|block": "红外按键值",
+    "Zero.wasAnyIrButtonPressed|block": "任意按键被按下",
+    "Zero.irButtonCode|block": "红外按键%button|值"
 }

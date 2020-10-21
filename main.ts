@@ -647,5 +647,18 @@ namespace Zero {
             return false;
         }
     }
-
+    /**
+     * Returns the command code of a specific IR button.
+     * @param button the button
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_button_code
+    //% button.fieldEditor="gridpicker"
+    //% button.fieldOptions.columns=3
+    //% button.fieldOptions.tooltips="false"
+    //% block="IR button code %button"
+    //% weight=5
+    export function irButtonCode(button: IrButton): number {
+        return button as number;
+    }
 }
