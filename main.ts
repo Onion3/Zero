@@ -440,6 +440,74 @@ namespace Zero {
 	let length = (list[1] + list[2] + list[3])/3;
 	return  Math.floor(length);
     }
+ function pushBit(bit: number): number {
+        irState.bitsReceived += 1;
+        if (irState.bitsReceived <= 8) {
+            // ignore all address bits
+            if (irState.protocol === IrProtocol.Keyestudio && bit === 1) {
+                // recover from missing message bits at the beginning
+                // Keyestudio address is 0 and thus missing bits can be easily detected
+                // by checking for the first inverse address bit (which is a 1)
+                irState.bitsReceived = 9;
+            }
+            return IR_INCOMPLETE;
+        }
+        if (irState.bitsReceived <= 16) {
+            // ignore all inverse address bits
+            return IR_INCOMPLETE;
+        } else if (irState.bitsReceived < 24) {
+            irState.commandBits = (irState.commandBits << 1) + bit;
+            return IR_INCOMPLETE;
+        } else if (irState.bitsReceived === 24) {
+            irState.commandBits = (irState.commandBits << 1) + bit;
+            return irState.commandBits & 0xff;
+        } else {
+            // ignore all inverse command bits
+            return IR_INCOMPLETE;
+        }
+    }
 
+    function detectCommand(markAndSpace: number): number {
+        if (markAndSpace < 1600) {
+            // low bit
+            return pushBit(0);
+        } else if (markAndSpace < 2700) {
+            // high bit
+            return pushBit(1);
+        }
+
+        irState.bitsReceived = 0;
+
+        if (markAndSpace < 12500) {
+            // Repeat detected
+            return IR_REPEAT;
+        } else if (markAndSpace < 14500) {
+            // Start detected
+            return IR_INCOMPLETE;
+        } else {
+            return IR_INCOMPLETE;
+        }
+    }
+
+    function enableIrMarkSpaceDetection(pin: DigitalPin) {
+        pins.setPull(pin, PinPullMode.PullNone);
+
+        let mark = 0;
+        let space = 0;
+
+        pins.onPulsed(pin, PulseValue.Low, () => {
+            // HIGH, see https://github.com/microsoft/pxt-microbit/issues/1416
+            mark = pins.pulseDuration();
+        });
+
+        pins.onPulsed(pin, PulseValue.High, () => {
+            // LOW
+            space = pins.pulseDuration();
+            const command = detectCommand(mark + space);
+            if (command !== IR_INCOMPLETE) {
+                control.raiseEvent(MICROBIT_MAKERBIT_IR_NEC, command);
+            }
+        });
+    }
 
 }
