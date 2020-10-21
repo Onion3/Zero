@@ -610,6 +610,3 @@ namespace Zero {
     }
 }
 
-
-
-}
