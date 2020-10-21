@@ -14,6 +14,101 @@ namespace Zero {
     
     let yahStrip: neopixel.Strip;
 
+ // IR
+    let irState: IrState
+
+    const MICROBIT_MAKERBIT_IR_NEC = 777
+    const MICROBIT_MAKERBIT_IR_BUTTON_PRESSED_ID = 789
+    const MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID = 790
+    const IR_REPEAT = 256
+    const IR_INCOMPLETE = 257
+
+    interface IrState {
+        protocol: IrProtocol;
+        command: number;
+        hasNewCommand: boolean;
+        bitsReceived: uint8;
+        commandBits: uint8;
+    }
+
+    export enum IrProtocol {
+        //% block="Keyestudio"
+        Keyestudio = 0,
+        //% block="NEC"
+        NEC = 1,
+    }
+
+    export enum IrButtonAction {
+        //% block="pressed"
+        Pressed = 0,
+        //% block="released"
+        Released = 1,
+    }
+
+    export enum IrButton {
+        //IR HANDLE
+        //% block="up"
+        UP = 0x11,
+        //% block="down"
+        DOWN = 0x91,
+        //% block="left"
+        LEFT = 0x81,
+        //% block="right"
+        RIGHT = 0xa1,
+        //% block="m1"
+        M1 = 0xe9,
+        //% block="m2"
+        M2 = 0x69,
+        //% block="a"
+        A = 0x21,
+        //% block="b"
+        B = 0x01,
+        //% block="any"
+        Any = -1,
+        // MINI IR 
+        //% block="power"
+        Power = 0xa2,
+        //% block="menu"
+        MENU = 0xe2,
+        //% block="test"
+        TEST = 0x22,
+        //% block="+"
+        PLUS = 0x02,
+        //% block="back"
+        Back = 0xc2,
+        //% block="<<"
+        Back2 = 0xe0,
+        //% block="play"
+        Play = 0xa8,
+        //% block=">>"
+        F = 0x90,
+        //% block="0"
+        Number_0 = 0x68,
+        //% block="-"
+        Less = 0x98,
+        //% block="c"
+        C = 0xb0,
+        //% block="1"
+        Number_1 = 0x30,
+        //% block="2"
+        Number_2 = 0x18,
+        //% block="3"
+        Number_3 = 0x7a,
+        //% block="4"
+        Number_4 = 0x10,
+        //% block="5"
+        Number_5 = 0x38,
+        //% block="6"
+        Number_6 = 0x5a,
+        //% block="7"
+        Number_7 = 0x42,
+        //% block="8"
+        Number_8 = 0x4a,
+        //% block="9"
+        Number_9 = 0x52,
+    }
+
+
     export enum enColor {
 
         //% blockId="OFF" block="OFF"
