@@ -1,14 +1,11 @@
 {
     "name": "Zero",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Extension for Onion3 Matrixbit Zero V1.0.2",
     "license": "MIT",
     "dependencies": {
         "core": "*",
-        "neopixel": "github:Onion3/pxt-neopixel",
-        "Mbit_IR":  "github:lzty634158/yahboom_mbit_IR"
-    
-		
+        "neopixel": "github:Onion3/pxt-neopixel"
     },
     "files": [
         "README.md",
