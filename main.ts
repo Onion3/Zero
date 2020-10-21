@@ -509,5 +509,85 @@ namespace Zero {
             }
         });
     }
+    /**
+     * Connects to the IR receiver module at the specified pin and configures the IR protocol.
+     * @param pin IR receiver pin. eg: DigitalPin.P3
+     * @param protocol IR protocol. eg: valon.IrProtocol.NEC
+     */
+    //% subcategory="IR Receiver"
+    //% blockId="makerbit_infrared_connect_receiver"
+    //% block="connect IR receiver at pin %pin and decode %protocol"
+    //% pin.fieldEditor="gridpicker"
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips="false"
+    //% weight=15
+    export function connectIrReceiver(pin: DigitalPin, protocol: IrProtocol): void {
+        if (irState) {
+            return;
+        }
+
+        irState = {
+            protocol: protocol,
+            bitsReceived: 0,
+            commandBits: 0,
+            command: IrButton.Any,
+            hasNewCommand: false,
+        };
+
+        enableIrMarkSpaceDetection(pin);
+
+        let activeCommand = IR_INCOMPLETE;
+        let repeatTimeout = 0;
+        const REPEAT_TIMEOUT_MS = 120;
+
+        control.onEvent(
+            MICROBIT_MAKERBIT_IR_NEC,
+            EventBusValue.MICROBIT_EVT_ANY,
+            () => {
+                const necValue = control.eventValue();
+
+                // Refresh repeat timer
+                if (necValue <= 255 || necValue === IR_REPEAT) {
+                    repeatTimeout = input.runningTime() + REPEAT_TIMEOUT_MS;
+                }
+
+                // Process a new command
+                if (necValue <= 255 && necValue !== activeCommand) {
+                    if (activeCommand >= 0) {
+                        control.raiseEvent(
+                            MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID,
+                            activeCommand
+                        );
+                    }
+
+                    irState.hasNewCommand = true;
+                    irState.command = necValue;
+                    activeCommand = necValue;
+                    control.raiseEvent(MICROBIT_MAKERBIT_IR_BUTTON_PRESSED_ID, necValue);
+                }
+            }
+        );
+
+        control.inBackground(() => {
+            while (true) {
+                if (activeCommand === IR_INCOMPLETE) {
+                    // sleep to save CPU cylces
+                    basic.pause(2 * REPEAT_TIMEOUT_MS);
+                } else {
+                    const now = input.runningTime();
+                    if (now > repeatTimeout) {
+                        // repeat timed out
+                        control.raiseEvent(
+                            MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID,
+                            activeCommand
+                        );
+                        activeCommand = IR_INCOMPLETE;
+                    } else {
+                        basic.pause(REPEAT_TIMEOUT_MS);
+                    }
+                }
+            }
+        });
+    }
 
 }
