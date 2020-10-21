@@ -1,7 +1,7 @@
 {
     "name": "Zero",
     "version": "1.0.1",
-    "description": "Extension for Onion3 Matrixbit Zero V1.0.1",
+    "description": "Extension for Onion3 Matrixbit Zero V1.0.2",
     "license": "MIT",
     "dependencies": {
         "core": "*",
