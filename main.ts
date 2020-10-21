@@ -589,5 +589,63 @@ namespace Zero {
             }
         });
     }
+	/**
+     * Do something when a specific button is pressed or released on the remote control.
+     * @param button the button to be checked
+     * @param action the trigger action
+     * @param handler body code to run when event is raised
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_on_ir_button
+    //% block="on IR button | %button | %action"
+    //% button.fieldEditor="gridpicker"
+    //% button.fieldOptions.columns=3
+    //% button.fieldOptions.tooltips="false"
+    //% weight=13
+    export function onIrButton(button: IrButton, action: IrButtonAction, handler: () => void) {
+        control.onEvent(
+            action === IrButtonAction.Pressed
+                ? MICROBIT_MAKERBIT_IR_BUTTON_PRESSED_ID
+                : MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID,
+            button === IrButton.Any ? EventBusValue.MICROBIT_EVT_ANY : button,
+            () => {
+                irState.command = control.eventValue();
+                handler();
+            }
+        );
+    }
+
+    /**
+     * Returns the code of the IR button that was pressed last. Returns -1 (IrButton.Any) if no button has been pressed yet.
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_ir_button_pressed
+    //% block="IR button"
+    //% weight=10
+    export function irButton(): number {
+        if (!irState) {
+            return IrButton.Any;
+        }
+        return irState.command;
+    }
+
+    /**
+     * Returns true if any button was pressed since the last call of this function. False otherwise.
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_was_any_button_pressed
+    //% block="any IR button was pressed"
+    //% weight=7
+    export function wasAnyIrButtonPressed(): boolean {
+        if (!irState) {
+            return false;
+        }
+        if (irState.hasNewCommand) {
+            irState.hasNewCommand = false;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
