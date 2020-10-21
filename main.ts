@@ -17,6 +17,23 @@ namespace Zero {
     const PWM_ADD = 0x01
     const MOTOR = 0x02
     const RGB = 0x01
+	    // IR
+    let irState: IrState
+
+    const MICROBIT_MAKERBIT_IR_NEC = 777
+    const MICROBIT_MAKERBIT_IR_BUTTON_PRESSED_ID = 789
+    const MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID = 790
+    const IR_REPEAT = 256
+    const IR_INCOMPLETE = 257
+
+    interface IrState {
+        protocol: IrProtocol;
+        command: number;
+        hasNewCommand: boolean;
+        bitsReceived: uint8;
+        commandBits: uint8;
+    }
+
     
     let yahStrip: neopixel.Strip;
 
@@ -40,28 +57,74 @@ namespace Zero {
         Yellow,
 
     }
-    export enum enMusic {
+	export enum IrProtocol {
+        //% block="Keyestudio"
+        Keyestudio = 0,
+        //% block="NEC"
+        NEC = 1,
+    }
 
-        dadadum = 0,
-        entertainer,
-        prelude,
-        ode,
-        nyan,
-        ringtone,
-        funk,
-        blues,
-        birthday,
-        wedding,
-        funereal,
-        punchline,
-        baddy,
-        chase,
-        ba_ding,
-        wawawawaa,
-        jump_up,
-        jump_down,
-        power_up,
-        power_down
+	  export enum IrButton {
+        //IR HANDLE
+        //% block="up"
+        UP = 0x11,
+        //% block="down"
+        DOWN = 0x91,
+        //% block="left"
+        LEFT = 0x81,
+        //% block="right"
+        RIGHT = 0xa1,
+        //% block="m1"
+        M1 = 0xe9,
+        //% block="m2"
+        M2 = 0x69,
+        //% block="a"
+        A = 0x21,
+        //% block="b"
+        B = 0x01,
+        //% block="any"
+        Any = -1,
+        // MINI IR 
+        //% block="power"
+        Power = 0xa2,
+        //% block="menu"
+        MENU = 0xe2,
+        //% block="test"
+        TEST = 0x22,
+        //% block="+"
+        PLUS = 0x02,
+        //% block="back"
+        Back = 0xc2,
+        //% block="<<"
+        Back2 = 0xe0,
+        //% block="play"
+        Play = 0xa8,
+        //% block=">>"
+        F = 0x90,
+        //% block="0"
+        Number_0 = 0x68,
+        //% block="-"
+        Less = 0x98,
+        //% block="c"
+        C = 0xb0,
+        //% block="1"
+        Number_1 = 0x30,
+        //% block="2"
+        Number_2 = 0x18,
+        //% block="3"
+        Number_3 = 0x7a,
+        //% block="4"
+        Number_4 = 0x10,
+        //% block="5"
+        Number_5 = 0x38,
+        //% block="6"
+        Number_6 = 0x5a,
+        //% block="7"
+        Number_7 = 0x42,
+        //% block="8"
+        Number_8 = 0x4a,
+        //% block="9"
+        Number_9 = 0x52,
     }
     export enum enPos {
 		//% blockId="AlltState" block="AllState"
@@ -197,36 +260,6 @@ namespace Zero {
 
    
 	
-    //% blockId=Zero_Music_Car block="Music_Car|%index"
-    //% weight=95
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Music_Car(index: enMusic): void {
-        switch (index) {
-            case enMusic.dadadum: music.beginMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.Once); break;
-            case enMusic.birthday: music.beginMelody(music.builtInMelody(Melodies.Birthday), MelodyOptions.Once); break;
-            case enMusic.entertainer: music.beginMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.Once); break;
-            case enMusic.prelude: music.beginMelody(music.builtInMelody(Melodies.Prelude), MelodyOptions.Once); break;
-            case enMusic.ode: music.beginMelody(music.builtInMelody(Melodies.Ode), MelodyOptions.Once); break;
-            case enMusic.nyan: music.beginMelody(music.builtInMelody(Melodies.Nyan), MelodyOptions.Once); break;
-            case enMusic.ringtone: music.beginMelody(music.builtInMelody(Melodies.Ringtone), MelodyOptions.Once); break;
-            case enMusic.funk: music.beginMelody(music.builtInMelody(Melodies.Funk), MelodyOptions.Once); break;
-            case enMusic.blues: music.beginMelody(music.builtInMelody(Melodies.Blues), MelodyOptions.Once); break;
-            case enMusic.wedding: music.beginMelody(music.builtInMelody(Melodies.Wedding), MelodyOptions.Once); break;
-            case enMusic.funereal: music.beginMelody(music.builtInMelody(Melodies.Funeral), MelodyOptions.Once); break;
-            case enMusic.punchline: music.beginMelody(music.builtInMelody(Melodies.Punchline), MelodyOptions.Once); break;
-            case enMusic.baddy: music.beginMelody(music.builtInMelody(Melodies.Baddy), MelodyOptions.Once); break;
-            case enMusic.chase: music.beginMelody(music.builtInMelody(Melodies.Chase), MelodyOptions.Once); break;
-            case enMusic.ba_ding: music.beginMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once); break;
-            case enMusic.wawawawaa: music.beginMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once); break;
-            case enMusic.jump_up: music.beginMelody(music.builtInMelody(Melodies.JumpUp), MelodyOptions.Once); break;
-            case enMusic.jump_down: music.beginMelody(music.builtInMelody(Melodies.JumpDown), MelodyOptions.Once); break;
-            case enMusic.power_up: music.beginMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once); break;
-            case enMusic.power_down: music.beginMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once); break;
-        }
-    }
-    
     
     
     //% blockId=Zero_CarCtrl block="CarCtrl|%index"
@@ -351,6 +384,232 @@ namespace Zero {
 	let length = (list[1] + list[2] + list[3])/3;
 	return  Math.floor(length);
     }
+	function pushBit(bit: number): number {
+        irState.bitsReceived += 1;
+        if (irState.bitsReceived <= 8) {
+            // ignore all address bits
+            if (irState.protocol === IrProtocol.Keyestudio && bit === 1) {
+                // recover from missing message bits at the beginning
+                // Keyestudio address is 0 and thus missing bits can be easily detected
+                // by checking for the first inverse address bit (which is a 1)
+                irState.bitsReceived = 9;
+            }
+            return IR_INCOMPLETE;
+        }
+        if (irState.bitsReceived <= 16) {
+            // ignore all inverse address bits
+            return IR_INCOMPLETE;
+        } else if (irState.bitsReceived < 24) {
+            irState.commandBits = (irState.commandBits << 1) + bit;
+            return IR_INCOMPLETE;
+        } else if (irState.bitsReceived === 24) {
+            irState.commandBits = (irState.commandBits << 1) + bit;
+            return irState.commandBits & 0xff;
+        } else {
+            // ignore all inverse command bits
+            return IR_INCOMPLETE;
+        }
+    }
+
+    function detectCommand(markAndSpace: number): number {
+        if (markAndSpace < 1600) {
+            // low bit
+            return pushBit(0);
+        } else if (markAndSpace < 2700) {
+            // high bit
+            return pushBit(1);
+        }
+
+        irState.bitsReceived = 0;
+
+        if (markAndSpace < 12500) {
+            // Repeat detected
+            return IR_REPEAT;
+        } else if (markAndSpace < 14500) {
+            // Start detected
+            return IR_INCOMPLETE;
+        } else {
+            return IR_INCOMPLETE;
+        }
+    }
+
+    function enableIrMarkSpaceDetection(pin: DigitalPin) {
+        pins.setPull(pin, PinPullMode.PullNone);
+
+        let mark = 0;
+        let space = 0;
+
+        pins.onPulsed(pin, PulseValue.Low, () => {
+            // HIGH, see https://github.com/microsoft/pxt-microbit/issues/1416
+            mark = pins.pulseDuration();
+        });
+
+        pins.onPulsed(pin, PulseValue.High, () => {
+            // LOW
+            space = pins.pulseDuration();
+            const command = detectCommand(mark + space);
+            if (command !== IR_INCOMPLETE) {
+                control.raiseEvent(MICROBIT_MAKERBIT_IR_NEC, command);
+            }
+        });
+    }
+
+    /**
+     * Connects to the IR receiver module at the specified pin and configures the IR protocol.
+     * @param pin IR receiver pin. eg: DigitalPin.P3
+     * @param protocol IR protocol. eg: valon.IrProtocol.NEC
+     */
+    //% subcategory="IR Receiver"
+    //% blockId="makerbit_infrared_connect_receiver"
+    //% block="connect IR receiver at pin %pin and decode %protocol"
+    //% pin.fieldEditor="gridpicker"
+    //% pin.fieldOptions.columns=4
+    //% pin.fieldOptions.tooltips="false"
+    //% weight=15
+    export function connectIrReceiver(pin: DigitalPin, protocol: IrProtocol): void {
+        if (irState) {
+            return;
+        }
+
+        irState = {
+            protocol: protocol,
+            bitsReceived: 0,
+            commandBits: 0,
+            command: IrButton.Any,
+            hasNewCommand: false,
+        };
+
+        enableIrMarkSpaceDetection(pin);
+
+        let activeCommand = IR_INCOMPLETE;
+        let repeatTimeout = 0;
+        const REPEAT_TIMEOUT_MS = 120;
+
+        control.onEvent(
+            MICROBIT_MAKERBIT_IR_NEC,
+            EventBusValue.MICROBIT_EVT_ANY,
+            () => {
+                const necValue = control.eventValue();
+
+                // Refresh repeat timer
+                if (necValue <= 255 || necValue === IR_REPEAT) {
+                    repeatTimeout = input.runningTime() + REPEAT_TIMEOUT_MS;
+                }
+
+                // Process a new command
+                if (necValue <= 255 && necValue !== activeCommand) {
+                    if (activeCommand >= 0) {
+                        control.raiseEvent(
+                            MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID,
+                            activeCommand
+                        );
+                    }
+
+                    irState.hasNewCommand = true;
+                    irState.command = necValue;
+                    activeCommand = necValue;
+                    control.raiseEvent(MICROBIT_MAKERBIT_IR_BUTTON_PRESSED_ID, necValue);
+                }
+            }
+        );
+
+        control.inBackground(() => {
+            while (true) {
+                if (activeCommand === IR_INCOMPLETE) {
+                    // sleep to save CPU cylces
+                    basic.pause(2 * REPEAT_TIMEOUT_MS);
+                } else {
+                    const now = input.runningTime();
+                    if (now > repeatTimeout) {
+                        // repeat timed out
+                        control.raiseEvent(
+                            MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID,
+                            activeCommand
+                        );
+                        activeCommand = IR_INCOMPLETE;
+                    } else {
+                        basic.pause(REPEAT_TIMEOUT_MS);
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * Do something when a specific button is pressed or released on the remote control.
+     * @param button the button to be checked
+     * @param action the trigger action
+     * @param handler body code to run when event is raised
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_on_ir_button
+    //% block="on IR button | %button | %action"
+    //% button.fieldEditor="gridpicker"
+    //% button.fieldOptions.columns=3
+    //% button.fieldOptions.tooltips="false"
+    //% weight=13
+    export function onIrButton(button: IrButton, action: IrButtonAction, handler: () => void) {
+        control.onEvent(
+            action === IrButtonAction.Pressed
+                ? MICROBIT_MAKERBIT_IR_BUTTON_PRESSED_ID
+                : MICROBIT_MAKERBIT_IR_BUTTON_RELEASED_ID,
+            button === IrButton.Any ? EventBusValue.MICROBIT_EVT_ANY : button,
+            () => {
+                irState.command = control.eventValue();
+                handler();
+            }
+        );
+    }
+
+    /**
+     * Returns the code of the IR button that was pressed last. Returns -1 (IrButton.Any) if no button has been pressed yet.
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_ir_button_pressed
+    //% block="IR button"
+    //% weight=10
+    export function irButton(): number {
+        if (!irState) {
+            return IrButton.Any;
+        }
+        return irState.command;
+    }
+
+    /**
+     * Returns true if any button was pressed since the last call of this function. False otherwise.
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_was_any_button_pressed
+    //% block="any IR button was pressed"
+    //% weight=7
+    export function wasAnyIrButtonPressed(): boolean {
+        if (!irState) {
+            return false;
+        }
+        if (irState.hasNewCommand) {
+            irState.hasNewCommand = false;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns the command code of a specific IR button.
+     * @param button the button
+     */
+    //% subcategory="IR Receiver"
+    //% blockId=makerbit_infrared_button_code
+    //% button.fieldEditor="gridpicker"
+    //% button.fieldOptions.columns=3
+    //% button.fieldOptions.tooltips="false"
+    //% block="IR button code %button"
+    //% weight=5
+    export function irButtonCode(button: IrButton): number {
+        return button as number;
+    }
+}
+
 
 
 }
