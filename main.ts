@@ -46,8 +46,7 @@ namespace Zero {
     }
 
     export enum IrButton {
-		
-		
+
 	  //% block="A"
 	  A = 0x45,
 	  //% block="B"
@@ -89,7 +88,7 @@ namespace Zero {
 	  //% block="8"	  
 	  NUM8 = 0x52,
 	  //% block="9"	  
-	  NUM9 = 0x4A	
+	  NUM9 = 0x4A,	
         /*//IR HANDLE
         //% block="up"
         UP = 0x11,
