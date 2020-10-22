@@ -46,7 +46,51 @@ namespace Zero {
     }
 
     export enum IrButton {
-        //IR HANDLE
+		
+		
+	  //% block="A"
+	  A = 0x45,
+	  //% block="B"
+	  B = 0x46,
+	  //% block="C"	  
+	  C = 0x43,
+	  //% block="D"
+	  D = 0x44,	  
+	  //% block="UP"
+	  Up = 0x40,
+	  //% block="E"
+	  E = 0x47,	
+	  //% block="Left"	  
+	  Left = 0x7,
+	  //% block="Set"	  
+	  SET = 0x15,
+	  //% block="Right"	  
+	  Right = 0x9,
+	  //% block="E"	  
+	  NUM0 = 0x16,
+	  //% block="Down"	  
+	  Down = 0x19,
+	  //% block="F"	  
+	  F = 0x0C,
+	  //% block="1"	  
+	  NUM1 = 0x0C,
+	  //% block="2"	  
+	  NUM2 = 0x18,
+	  //% block="3"	  
+	  NUM3 = 0x5E,
+	  //% block="4"	  
+	  NUM4 = 0x8,
+	  //% block="5"	  
+	  NUM5 = 0x1C,
+	  //% block="6"	  
+	  NUM6 = 0x5A,
+	  //% block="7"	  
+	  NUM7 = 0x42,
+	  //% block="8"	  
+	  NUM8 = 0x52,
+	  //% block="9"	  
+	  NUM9 = 0x4A	
+        /*//IR HANDLE
         //% block="up"
         UP = 0x11,
         //% block="down"
@@ -105,7 +149,7 @@ namespace Zero {
         //% block="8"
         Number_8 = 0x4a,
         //% block="9"
-        Number_9 = 0x52,
+        Number_9 = 0x52,*/
     }
 
 
