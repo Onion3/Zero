@@ -46,7 +46,7 @@ namespace Zero {
     }
 
     export enum IrButton {
-
+      //IR HANDLE
 	  //% block="A"
 	  A = 0x45,
 	  //% block="B"
