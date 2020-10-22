@@ -65,7 +65,7 @@ namespace Zero {
 	  SET = 0xA8,
 	  //% block="Right"	  
 	  Right = 0x90,
-	  //% block="E"	  
+	  //% block="0"	  
 	  NUM0 = 0x68,
 	  //% block="Down"	  
 	  Down = 0x98,
